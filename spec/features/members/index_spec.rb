@@ -8,7 +8,7 @@ describe 'Member Index' do
     member2 = Member.create!(first_name: "Nick", last_name: "Walker", address: "14 hack squat lane", zipcode: 80212, phone: 3036629399, dues_current: false)
     member3 = Member.create!(first_name: "Alina", last_name: "Popa", address: "31 barbell lane", zipcode: 80202, phone: 7202222222, dues_current: true)
     visit "/members"
-    # save_and_open_page
+    save_and_open_page
     expect(page).to have_content("first_name: Phil")
     expect(page).to have_content("last_name: Heath")
     expect(page).to have_content("address: 1 barbell lane")

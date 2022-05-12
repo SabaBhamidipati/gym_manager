@@ -1,0 +1,12 @@
+<h1>All Members</h1>
+
+<% @members.each do |member| %>
+  <p>first_name: <%= member.first_name %></p>
+  <p>last_name: <%= member.last_name %></p>
+  <p>address: <%= member.address %></p>
+  <p>zipcode: <%= member.zipcode %></p>
+  <p>phone: <%= member.phone %></p>
+  <p>dues_current: <%= member.dues_current %></p>
+  <p><%= member.created_at %></p>
+  <p><%= member.updated_at %></p>
+<% end %>
