@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get '/gyms', to: 'gyms#index'
   get '/gyms/:id', to: 'gyms#show'
 # :implies that route will vary depending on what' spassed to it
+
+  get '/members', to: 'members#index'
 end
