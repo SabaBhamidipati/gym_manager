@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Member Index' do
 
-  it 'displays the attributes of each member record' do
+  it 'displays the attributes of all member records' do
 
     gym2 = Gym.create!(name: "Armbrust2", zip_code: 80201, member_cost: 55, member_initiation_fee: 30, guest_cost: 20, open: true)
     # require "pry"; binding.pry
