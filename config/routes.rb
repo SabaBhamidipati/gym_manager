@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get '/members', to: 'members#index'
   get '/members/:id', to: 'members#show'
+
+  get '/gyms/:gym_id/members', to: 'gym_members#index'
 end
