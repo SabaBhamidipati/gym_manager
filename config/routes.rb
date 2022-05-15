@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 # :implies that route will vary depending on what' spassed to it
 
   get '/members', to: 'members#index'
+  get '/members/:id', to: 'members#show'
 end
