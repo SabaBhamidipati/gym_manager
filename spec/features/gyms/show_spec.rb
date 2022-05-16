@@ -41,8 +41,8 @@ describe 'Gym Show' do
   end
 
   it 'displays the gym members index link' do
-    visit "/gyms/#{@gym1.id}"
-    click_link "gym1 members index page"
+    visit "/gyms/#{@gym2.id}"
+    click_link "gym members index page"
     expect(current_path).to eq("/gyms/#{@gym2.id}/members")
   end
 end
