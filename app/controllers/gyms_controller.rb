@@ -1,7 +1,11 @@
 class GymsController < ApplicationController
 
   def index
-    @gyms = Gym.all
+    @gyms = Gym.order_by_created_at
+    # require "pry"; binding.pry
+    #order by is class method and can be called here
+    #any method created in model s/b used in controller if used to org data, not in view
+    #by default Gym.all created in ascending order
   end
 
   def show
@@ -9,4 +13,17 @@ class GymsController < ApplicationController
     @gym = Gym.find(params[:id])
     #params gets information from the URL found in the test
   end
+
+  def new
+  end
+
+  def create
+    Gym.create(gym_params)
+    redirect_to '/gyms'
+  end
+
+  private
+    def gym_params
+      params.permit(:name, :zip_code, :member_cost, :member_initiation_fee, :guest_cost, :open)
+    end
 end

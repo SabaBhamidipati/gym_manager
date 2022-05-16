@@ -14,19 +14,20 @@ describe 'Gym Index' do
     expect(page).to have_content("Armbrust")
     expect(page).to have_content("Armbrust2")
     expect(page).to have_content("Armbrust3")
-    
+
     expect(page).to_not have_content("Blessing Awodibe")
   end
 
    it 'displays the most recently created records first' do
     visit "/gyms"
-
+    # save_and_open_page
     expect("#{@gym2.name}").to_not appear_before("#{@gym1.name}")
     expect("#{@gym1.name}").to appear_before("#{@gym2.name}")
    end
 
    it 'displays the members index link' do
      visit "/gyms"
+
      click_link "members index page"
      expect(current_path).to eq("/members")
    end
@@ -35,5 +36,21 @@ describe 'Gym Index' do
      visit "/gyms"
      click_link "gyms index page"
      expect(current_path).to eq("/gyms")
+   end
+
+   describe 'new Gym creation' do
+     it 'links to a new page from the gyms index' do
+       visit '/gyms'
+
+       click_link('New Gym')
+       expect(current_path).to eq('/gyms/new')
+        # save_and_open_page
+
+       fill_in 'Name', with: 'Mountain Mecca'
+       click_on 'Create Gym'
+
+       expect(current_path).to eq('/gyms')
+       expect(page).to have_content('Mountain Mecca')
+     end
    end
 end
