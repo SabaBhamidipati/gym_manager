@@ -1,8 +1,8 @@
 <%= link_to "members index page", "/members" %>
 <%= link_to "gyms index page", "/gyms" %>
 <%= link_to "gym members index page", "/gyms/#{@gym.id}/members" %>
-
-<h1><%= @gym.name %></h1>
+<%= link_to "update gym", "/gyms/#{@gym.id}/edit" %>
+<h1>Name: <%= @gym.name %></h1>
 
 <p>zip code: <%= @gym.zip_code %> </p>
 <p>member cost: <%= @gym.member_cost %> </p>
