@@ -3,6 +3,6 @@
 
 <h1>All Gyms</h1>
 
-<% @gyms.each do |gym| %>
+<% @gyms.order_by_created_at.each do |gym| %>
   <h3><%= gym.name %></h3>
 <% end %>

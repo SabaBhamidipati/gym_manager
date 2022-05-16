@@ -21,11 +21,14 @@ describe 'Gym Show' do
     expect(page).to have_content("member initiation fee: 30")
     expect(page).to have_content("guest cost: 20")
     expect(page).to have_content("open: true")
+    expect(page).to_not have_content("Armbrust2")
   end
 
   it 'shows a count of the number of members associated with a gym' do
     visit "/gyms/#{@gym1.id}"
     expect(page).to have_content("member count: 2")
+    
+    expect(page).to_not have_content("member count: 3")
   end
 
   it 'displays the members index link' do
@@ -38,5 +41,11 @@ describe 'Gym Show' do
     visit "/gyms/#{@gym1.id}"
     click_link "gyms index page"
     expect(current_path).to eq("/gyms")
+  end
+
+  it 'displays the gym members index link' do
+    visit "/gyms/#{@gym2.id}"
+    click_link "gym members index page"
+    expect(current_path).to eq("/gyms/#{@gym2.id}/members")
   end
 end
