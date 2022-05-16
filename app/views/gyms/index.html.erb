@@ -1,8 +1,8 @@
 <%= link_to "members index page", "/members" %>
 <%= link_to "gyms index page", "/gyms" %>
+<%= link_to "New Gym", "/gyms/new" %>
 
 <h1>All Gyms</h1>
-
-<% @gyms.order_by_created_at.each do |gym| %>
+<% @gyms.each do |gym| %>
   <h3><%= gym.name %></h3>
 <% end %>
