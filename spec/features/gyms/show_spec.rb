@@ -13,7 +13,6 @@ describe 'Gym Show' do
   end
 
   it 'displays the attributes of each gym record' do
-
     visit "/gyms/#{@gym1.id}"
     # save_and_open_page
     expect(page).to have_content("Armbrust")
@@ -27,5 +26,17 @@ describe 'Gym Show' do
   it 'shows a count of the number of members associated with a gym' do
     visit "/gyms/#{@gym1.id}"
     expect(page).to have_content("member count: 2")
+  end
+
+  it 'displays the members index link' do
+    visit "/gyms/#{@gym1.id}"
+    click_link "members index page"
+    expect(current_path).to eq("/members")
+  end
+
+  it 'displays the gyms index link' do
+    visit "/gyms/#{@gym1.id}"
+    click_link "gyms index page"
+    expect(current_path).to eq("/gyms")
   end
 end
