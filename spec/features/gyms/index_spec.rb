@@ -5,6 +5,7 @@ describe 'Gym Index' do
     @gym1 = Gym.create!(name: "Armbrust", zip_code: 80204, member_cost: 45, member_initiation_fee: 30, guest_cost: 20, open: true)
     @gym2 = Gym.create!(name: "Armbrust2", zip_code: 80201, member_cost: 55, member_initiation_fee: 30, guest_cost: 20, open: true)
     @gym3 = Gym.create!(name: "Armbrust3", zip_code: 80200, member_cost: 65, member_initiation_fee: 30, guest_cost: 20, open: true)
+    @member8 = Member.create!(first_name: "Blessing", last_name: "Awodibe", address: "73 hack squat lane", zipcode: 80177, phone: 7206629341, dues_current: false, gym_id: @gym3.id)
   end
 
   it 'displays the name of each gym record' do
@@ -13,6 +14,7 @@ describe 'Gym Index' do
     expect(page).to have_content("Armbrust")
     expect(page).to have_content("Armbrust2")
     expect(page).to have_content("Armbrust3")
+    expect(page).to_not have_content("Blessing Awodibe")
   end
 
    it 'displays the most recently created records first' do
