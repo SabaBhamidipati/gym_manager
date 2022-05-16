@@ -14,6 +14,7 @@ describe 'Gym Index' do
     expect(page).to have_content("Armbrust")
     expect(page).to have_content("Armbrust2")
     expect(page).to have_content("Armbrust3")
+    
     expect(page).to_not have_content("Blessing Awodibe")
   end
 

@@ -27,6 +27,7 @@ describe 'Gym Show' do
   it 'shows a count of the number of members associated with a gym' do
     visit "/gyms/#{@gym1.id}"
     expect(page).to have_content("member count: 2")
+    
     expect(page).to_not have_content("member count: 3")
   end
 
