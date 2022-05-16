@@ -1,3 +1,6 @@
+<%= link_to "members index page", "/members" %>
+<%= link_to "gyms index page", "/gyms" %>
+
 <h1><%= @gym.name %></h1>
 
 <p>zip code: <%= @gym.zip_code %> </p>
@@ -5,3 +8,4 @@
 <p>member initiation fee: <%= @gym.member_initiation_fee %> </p>
 <p>guest cost: <%= @gym.guest_cost %> </p>
 <p>open: <%= @gym.open %> </p>
+<p>member count: <%= @gym.total_members_associated_with_gym %> </p>
