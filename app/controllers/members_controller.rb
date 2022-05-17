@@ -9,4 +9,8 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     #params gets information from the URL found in the test
   end
+
+  def edit
+    @member = Member.find(params[:id])
+  end
 end
