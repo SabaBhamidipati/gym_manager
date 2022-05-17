@@ -1,10 +1,10 @@
- <%= form_with url: '/gyms', method: :post, local: true do |form| %>
+<%= form_with url: '/gyms', method: :post, local: true do |form| %>
     <%= form.label :name %>
     <%= form.text_field :name %>
-    <%= form.text_field :zip_code %>
-    <%= form.text_field :member_cost %>
-    <%= form.text_field :member_initiation_fee %>
-    <%= form.text_field :guest_cost %>
-    <%= form.text_field :open %>
-    <%= form.submit 'Create Gym' %>
+   <p> Zip Code    <%= form.text_field :zip_code %><br>
+       Member Cost <%= form.text_field :member_cost %><br>
+       Member Initiation Fee <%= form.text_field :member_initiation_fee %><br>
+       Guest Cost  <%= form.text_field :guest_cost %><br>
+       Open Status <%= form.text_field :open %><br></p>
+       <%= form.submit 'Create Gym' %>
 <% end %>
