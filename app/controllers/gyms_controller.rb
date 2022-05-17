@@ -22,6 +22,16 @@ class GymsController < ApplicationController
     redirect_to '/gyms'
   end
 
+  def edit
+    @gym = Gym.find(params[:id])
+  end
+
+  def update
+    gym = Gym.find(params[:id])
+    gym.update(gym_params)
+    redirect_to "/gyms/#{gym.id}"
+  end
+
   private
     def gym_params
       params.permit(:name, :zip_code, :member_cost, :member_initiation_fee, :guest_cost, :open)
