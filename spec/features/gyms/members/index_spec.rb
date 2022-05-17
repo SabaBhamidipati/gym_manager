@@ -51,4 +51,14 @@ RSpec.describe 'Member Index' do
     click_link "gyms index page"
     expect(current_path).to eq("/gyms")
   end
+
+  describe 'new adoptable member creation' do
+    it 'links to a new page from the gym index' do
+      visit "/gyms/#{@gym2.id}/members"
+      
+      click_link('New Member')
+      expect(current_path).to eq("/gyms/#{@gym2.id}/members/new")
+    end
+  end
+
 end

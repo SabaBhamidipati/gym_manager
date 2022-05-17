@@ -7,4 +7,7 @@ class GymMembersController < ApplicationController
     #first have to grab all artist objects before sending to views
     #put a pry to see what we can get using params
   end
+
+  def new
+  end
 end
