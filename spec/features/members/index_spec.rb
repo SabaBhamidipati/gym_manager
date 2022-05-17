@@ -21,12 +21,12 @@ RSpec.describe 'Member Index' do
     expect(page).to have_content("phone: 7202123888")
     expect(page).to have_content("dues_current: true")
 
-    expect(page).to have_content("first_name: Nick")
-    expect(page).to have_content("last_name: Walker")
-    expect(page).to have_content("address: 14 hack squat lane")
-    expect(page).to have_content("zipcode: 80212")
-    expect(page).to have_content("phone: 3036629399")
-    expect(page).to have_content("dues_current: false")
+    # expect(page).to have_content("first_name: Nick")
+    # expect(page).to have_content("last_name: Walker")
+    # expect(page).to have_content("address: 14 hack squat lane")
+    # expect(page).to have_content("zipcode: 80212")
+    # expect(page).to have_content("phone: 3036629399")
+    # expect(page).to have_content("dues_current: false")
 
     expect(page).to have_content("first_name: Alina")
     expect(page).to have_content("last_name: Popa")
@@ -49,5 +49,34 @@ RSpec.describe 'Member Index' do
     visit "/members"
     click_link "gyms index page"
     expect(current_path).to eq("/gyms")
+  end
+
+  it 'displays only true records' do
+    visit "/members"
+    save_and_open_page
+    expect(page).to have_content(@member1.first_name)
+    expect(page).to have_content(@member1.last_name)
+    expect(page).to have_content(@member1.address)
+    expect(page).to have_content(@member1.zipcode)
+    expect(page).to have_content(@member1.phone)
+    expect(page).to have_content(@member1.dues_current)
+    expect(page).to have_content(@member3.first_name)
+    expect(page).to have_content(@member3.last_name)
+    expect(page).to have_content(@member3.address)
+    expect(page).to have_content(@member3.zipcode)
+    expect(page).to have_content(@member3.phone)
+    expect(page).to have_content(@member3.dues_current)
+    expect(page).to_not have_content(@member2.first_name)
+    expect(page).to_not have_content(@member2.last_name)
+    expect(page).to_not have_content(@member2.address)
+    expect(page).to_not have_content(@member2.zipcode)
+    expect(page).to_not have_content(@member2.phone)
+    expect(page).to_not have_content(@member2.dues_current)
+    expect(page).to_not have_content(@member8.first_name)
+    expect(page).to_not have_content(@member8.last_name)
+    expect(page).to_not have_content(@member8.address)
+    expect(page).to_not have_content(@member8.zipcode)
+    expect(page).to_not have_content(@member8.phone)
+    expect(page).to_not have_content(@member8.dues_current)
   end
 end

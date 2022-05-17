@@ -1,7 +1,8 @@
 class MembersController < ApplicationController
 
   def index
-    @members = Member.all
+    # require "pry"; binding.pry
+    @members = Member.dues_current_only
   end
 
   def show
