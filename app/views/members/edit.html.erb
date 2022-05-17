@@ -1,0 +1,16 @@
+<%= form_with url: "/members/#{@member.id}", method: :patch, local: true do |form| %>
+    <%= form.label "Member" %>
+    <%= form.label "First Name" %>
+  <%= form.text_field :first_name %>
+  <%= form.label "Last Name" %>
+  <%= form.text_field :last_name %>
+  <%= form.label "Address" %>
+  <%= form.text_field :address %><br>
+  <%= form.label "Zip Code" %>
+  <%= form.text_field :zipcode %><br>
+  <%= form.label "Phone" %>
+  <%= form.text_field :phone %><br>
+  <%= form.label "Dues Current" %>
+  <%= form.text_field :dues_current %>
+  <%= form.submit 'Update Member' %>
+<% end %>

@@ -35,4 +35,6 @@ describe 'Member Show' do
     click_link "gyms index page"
     expect(current_path).to eq("/gyms")
   end
+
+  describe 
 end
