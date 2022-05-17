@@ -20,7 +20,7 @@ RSpec.describe 'Edit Member' do
       fill_in :first_name, with: 'Paul'
       fill_in :last_name, with: 'House'
       click_on 'Update Member'
-      save_and_open_page
+      # save_and_open_page
 
       expect(current_path).to eq("/members/#{@member1.id}")
       expect(page).to have_content('first_name: Paul')

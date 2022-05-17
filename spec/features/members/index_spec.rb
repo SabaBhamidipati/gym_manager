@@ -50,4 +50,9 @@ RSpec.describe 'Member Index' do
     click_link "gyms index page"
     expect(current_path).to eq("/gyms")
   end
+
+  # it 'displays only true records' do
+  #
+  # end
+  # end
 end
