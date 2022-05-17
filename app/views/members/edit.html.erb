@@ -1,10 +1,16 @@
 <%= form_with url: "/members/#{@member.id}", method: :patch, local: true do |form| %>
-   <%= form.label :name %>
-   <%= form.text_field :name %>
-   <p> Zip Code    <%= form.text_field :zip_code %><br>
-      Member Cost <%= form.text_field :member_cost %><br>
-      Member Initiation Fee <%= form.text_field :member_initiation_fee %><br>
-      Guest Cost  <%= form.text_field :guest_cost %><br>
-      Open Status <%= form.text_field :open %><br></p>
-   <%= form.submit 'Update Member' %>
+    <%= form.label "Member" %>
+    <%= form.label "First Name" %>
+  <%= form.text_field :first_name %>
+  <%= form.label "Last Name" %>
+  <%= form.text_field :last_name %>
+  <%= form.label "Address" %>
+  <%= form.text_field :address %><br>
+  <%= form.label "Zip Code" %>
+  <%= form.text_field :zipcode %><br>
+  <%= form.label "Phone" %>
+  <%= form.text_field :phone %><br>
+  <%= form.label "Dues Current" %>
+  <%= form.text_field :dues_current %>
+  <%= form.submit 'Update Member' %>
 <% end %>

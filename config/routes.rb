@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/members', to: 'members#index'
   get '/members/:id', to: 'members#show'
   get '/members/:id/edit', to: 'members#edit'
+  patch '/members/:id', to: 'members#update'
 
   get '/gyms/:gym_id/members', to: 'gym_members#index'
   get '/gyms/:gym_id/members/new', to: 'gym_members#new'
