@@ -1,6 +1,7 @@
 <%= link_to "members index page", "/members" %>
 <%= link_to "gyms index page", "/gyms" %>
 <%= link_to "New Member", "/gyms/#{@gym.id}/members/new" %>
+<%= link_to "Sort Members", "/gyms/#{@gym.id}/members?sort=asc" %>
 
 <h1>All Members</h1>
 
