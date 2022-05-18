@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Member Index' do
+RSpec.describe 'Member Deletion' do
 
   before :each do
     @gym2 = Gym.create!(name: "Armbrust2", zip_code: 80201, member_cost: 55, member_initiation_fee: 30, guest_cost: 20, open: true)

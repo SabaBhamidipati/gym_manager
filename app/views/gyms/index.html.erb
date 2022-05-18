@@ -6,4 +6,5 @@
 <% @gyms.each do |gym| %>
   <h3><%= gym.name %></h3>
   <h5><%= link_to "Edit #{gym.name}", "/gyms/#{gym.id}/edit" %></h5>
+  <h5><%= link_to "Delete #{gym.name}", "/gyms/#{gym.id}", method: :delete %></h5>
 <% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Gym Show' do
+RSpec.describe 'Gym Deletion' do
   before :each do
     @gym1 = Gym.create!(name: "Armbrust", zip_code: 80204, member_cost: 45, member_initiation_fee: 30, guest_cost: 20, open: true)
     @gym2 = Gym.create!(name: "Armbrust2", zip_code: 80201, member_cost: 55, member_initiation_fee: 30, guest_cost: 20, open: true)
@@ -13,6 +13,7 @@ describe 'Gym Show' do
   end
 
   describe 'destroying a gym' do
+
     it 'can delete a gym from the index page ' do
       visit "/gyms/#{@gym2.id}"
       expect(page).to have_content("Armbrust2")
@@ -22,5 +23,15 @@ describe 'Gym Show' do
       expect(current_path).to eq("/gyms")
       expect(page).to_not have_content("Armbrust2")
     end
+
+    it 'adds a button to delete each parent' do
+       visit "/gyms"
+
+       expect(page).to have_link("Delete #{@gym1.name}")
+       expect(page).to have_link("Delete #{@gym2.name}")
+
+       click_link "Delete #{@gym1.name}"
+       expect(current_path).to eq("/gyms")
+     end
   end
 end
