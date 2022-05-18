@@ -5,6 +5,8 @@ class GymMembersController < ApplicationController
     # require "pry"; binding.pry
     if params[:sort].present?
       @members = @gym.members.sort_alphabetically
+    elsif params[:threshold].present?
+      @members = @gym.members.filter_to(params[:threshold])
     else
       @members = @gym.members
     end

@@ -3,6 +3,7 @@
 <%= link_to "New Member", "/gyms/#{@gym.id}/members/new" %>
 <%= link_to "Sort Members", "/gyms/#{@gym.id}/members?sort=asc" %>
 
+
 <h1>All Members</h1>
 
 <% @members.each do |member| %>
@@ -15,4 +16,10 @@
   <p>created_at <%= member.created_at %></p>
   <p>updated_at <%= member.updated_at %></p>
   <h5><%= link_to "Edit #{member.first_name}", "/members/#{member.id}/edit" %></h5>
+<% end %>
+
+<%= form_with url: "/gyms/#{@gym.id}/members", method: :get, local: true do |form| %>
+   <%= form.label :threshold, "Zipcode" %>
+   <%= form.text_field :threshold %><br>
+   <%= form.submit "Sort by Zipcode" %>
 <% end %>

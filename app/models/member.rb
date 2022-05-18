@@ -10,4 +10,8 @@ class Member < ApplicationRecord
      Member.order(:first_name)
     # require "pry"; binding.pry
   end
+
+  def self.filter_to(threshold)
+    Member.where("zipcode > ?", threshold)
+  end
 end

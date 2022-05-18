@@ -106,6 +106,18 @@ RSpec.describe 'Member Index' do
       click_link "Edit #{@member8.first_name}"
       expect(current_path).to eq("/members/#{@member8.id}/edit")
       end
+
+    describe 'display records over a threshold' do
+      it 'can input a number value and filter member records for display' do
+        visit "/gyms/#{@gym2.id}/members"
+
+        fill_in "threshold", with: "80202"
+        click_button "Sort by Zipcode"
+        save_and_open_page
+        expect(page).to have_content("Phil")
+        expect(page).to_not have_content("Alina")
+      end
+    end
     end
   end
 
