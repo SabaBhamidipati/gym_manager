@@ -84,10 +84,8 @@ RSpec.describe 'Member Index' do
     it 'has links to edit each member' do
       visit '/members'
     expect(page).to have_link("Edit #{@member1.first_name}")
-    expect(page).to have_link("Edit #{@member2.first_name}")
     expect(page).to have_link("Edit #{@member3.first_name}")
-    expect(page).to have_link("Edit #{@member8.first_name}")
-
+  
     click_link "Edit #{@member1.first_name}"
     expect(current_path).to eq("/members/#{@member1.id}/edit")
     end
