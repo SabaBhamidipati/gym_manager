@@ -27,7 +27,7 @@ describe 'Gym Show' do
   it 'shows a count of the number of members associated with a gym' do
     visit "/gyms/#{@gym1.id}"
     expect(page).to have_content("member count: 2")
-    
+
     expect(page).to_not have_content("member count: 3")
   end
 
@@ -47,5 +47,17 @@ describe 'Gym Show' do
     visit "/gyms/#{@gym2.id}"
     click_link "gym members index page"
     expect(current_path).to eq("/gyms/#{@gym2.id}/members")
+  end
+
+  describe 'destroying a gym' do
+    it 'can delete a gym from the index page ' do
+      visit "/gyms/#{@gym2.id}"
+      expect(page).to have_content("Armbrust2")
+
+      click_button "Delete Gym"
+
+      expect(current_path).to eq("/gyms")
+      expect(page).to_not have_content("Armbrust2")
+    end
   end
 end

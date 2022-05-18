@@ -32,6 +32,12 @@ class GymsController < ApplicationController
     redirect_to "/gyms/#{gym.id}"
   end
 
+  def destroy
+    gym = Gym.destroy(params[:id])
+    # require "pry"; binding.pry
+    redirect_to '/gyms'
+  end
+
   private
     def gym_params
       params.permit(:name, :zip_code, :member_cost, :member_initiation_fee, :guest_cost, :open)
