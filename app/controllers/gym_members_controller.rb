@@ -2,14 +2,13 @@ class GymMembersController < ApplicationController
 
   def index
     @gym = Gym.find(params[:gym_id])
-    # require "pry"; binding.pry
     if params[:sort].present?
       @members = @gym.members.sort_alphabetically
+    elsif params[:threshold].present?
+      @members = @gym.members.filter_to(params[:threshold])
     else
       @members = @gym.members
     end
-    #first have to grab all artist objects before sending to views
-    #put a pry to see what we can get using params
   end
 
   def new
@@ -17,7 +16,6 @@ class GymMembersController < ApplicationController
   end
 
   def create
-    # require "pry"; binding.pry
     gym = Gym.find(params[:gym_id])
     member = gym.members.create!(gym_members_params)
     redirect_to "/gyms/#{gym.id}/members"

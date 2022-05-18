@@ -13,13 +13,11 @@ RSpec.describe 'Gym Deletion' do
   end
 
   describe 'destroying a gym' do
-
     it 'can delete a gym from the index page ' do
       visit "/gyms/#{@gym2.id}"
       expect(page).to have_content("Armbrust2")
 
       click_button "Delete Gym"
-
       expect(current_path).to eq("/gyms")
       expect(page).to_not have_content("Armbrust2")
     end

@@ -7,6 +7,5 @@ class Gym < ApplicationRecord
 
   def total_members_associated_with_gym
     members.count
-    #class methods only whne you're comparing more than 1 gym
   end
 end

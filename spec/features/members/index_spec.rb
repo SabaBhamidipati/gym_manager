@@ -13,20 +13,12 @@ RSpec.describe 'Member Index' do
 
   it 'displays the attributes of all member records' do
     visit "/members"
-    # save_and_open_page
     expect(page).to have_content("first_name: Phil")
     expect(page).to have_content("last_name: Heath")
     expect(page).to have_content("address: 1 barbell lane")
     expect(page).to have_content("zipcode: 80211")
     expect(page).to have_content("phone: 7202123888")
     expect(page).to have_content("dues_current: true")
-
-    # expect(page).to have_content("first_name: Nick")
-    # expect(page).to have_content("last_name: Walker")
-    # expect(page).to have_content("address: 14 hack squat lane")
-    # expect(page).to have_content("zipcode: 80212")
-    # expect(page).to have_content("phone: 3036629399")
-    # expect(page).to have_content("dues_current: false")
 
     expect(page).to have_content("first_name: Alina")
     expect(page).to have_content("last_name: Popa")
@@ -41,19 +33,20 @@ RSpec.describe 'Member Index' do
 
   it 'displays the members index link' do
     visit "/members"
+
     click_link "members index page"
     expect(current_path).to eq("/members")
   end
 
   it 'displays the gyms index link' do
     visit "/members"
+
     click_link "gyms index page"
     expect(current_path).to eq("/gyms")
   end
 
   it 'displays only true records' do
     visit "/members"
-    # save_and_open_page
     expect(page).to have_content(@member1.first_name)
     expect(page).to have_content(@member1.last_name)
     expect(page).to have_content(@member1.address)
@@ -66,6 +59,7 @@ RSpec.describe 'Member Index' do
     expect(page).to have_content(@member3.zipcode)
     expect(page).to have_content(@member3.phone)
     expect(page).to have_content(@member3.dues_current)
+
     expect(page).to_not have_content(@member2.first_name)
     expect(page).to_not have_content(@member2.last_name)
     expect(page).to_not have_content(@member2.address)
@@ -83,11 +77,11 @@ RSpec.describe 'Member Index' do
   describe 'edit Members' do
     it 'has links to edit each member' do
       visit '/members'
-    expect(page).to have_link("Edit #{@member1.first_name}")
-    expect(page).to have_link("Edit #{@member3.first_name}")
-  
-    click_link "Edit #{@member1.first_name}"
-    expect(current_path).to eq("/members/#{@member1.id}/edit")
+      expect(page).to have_link("Edit #{@member1.first_name}")
+      expect(page).to have_link("Edit #{@member3.first_name}")
+
+      click_link "Edit #{@member1.first_name}"
+      expect(current_path).to eq("/members/#{@member1.id}/edit")
     end
   end
 end

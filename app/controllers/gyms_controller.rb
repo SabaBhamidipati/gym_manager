@@ -2,16 +2,10 @@ class GymsController < ApplicationController
 
   def index
     @gyms = Gym.order_by_created_at
-    # require "pry"; binding.pry
-    #order by is class method and can be called here
-    #any method created in model s/b used in controller if used to org data, not in view
-    #by default Gym.all created in ascending order
   end
 
   def show
-    # require "pry"; binding.pry
     @gym = Gym.find(params[:id])
-    #params gets information from the URL found in the test
   end
 
   def new
@@ -34,7 +28,6 @@ class GymsController < ApplicationController
 
   def destroy
     gym = Gym.destroy(params[:id])
-    # require "pry"; binding.pry
     redirect_to '/gyms'
   end
 

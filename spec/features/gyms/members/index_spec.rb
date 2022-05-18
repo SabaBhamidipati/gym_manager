@@ -1,7 +1,6 @@
   require 'rails_helper'
 
 RSpec.describe 'Member Index' do
-
   before :each do
     @gym2 = Gym.create!(name: "Armbrust2", zip_code: 80201, member_cost: 55, member_initiation_fee: 30, guest_cost: 20, open: true)
     @gym3 = Gym.create!(name: "Armbrust3", zip_code: 80200, member_cost: 65, member_initiation_fee: 30, guest_cost: 20, open: true)
@@ -12,9 +11,8 @@ RSpec.describe 'Member Index' do
   end
 
   it 'shows all of the members associated with a gym and their attributes' do
-
     visit "/gyms/#{@gym2.id}/members"
-    # save_and_open_page
+
     expect(page).to have_content("first_name: Phil")
     expect(page).to have_content("last_name: Heath")
     expect(page).to have_content("address: 1 barbell lane")
@@ -40,16 +38,20 @@ RSpec.describe 'Member Index' do
     expect(page).to_not have_content("last_name: Awodibe")
   end
 
-  it 'displays the members index link' do
-    visit "/gyms/#{@gym2.id}/members"
-    click_link "members index page"
-    expect(current_path).to eq("/members")
-  end
+  describe 'display links' do
+    it 'displays the members index link' do
+      visit "/gyms/#{@gym2.id}/members"
 
-  it 'displays the gyms index link' do
-    visit "/gyms/#{@gym2.id}/members"
-    click_link "gyms index page"
-    expect(current_path).to eq("/gyms")
+      click_link "members index page"
+      expect(current_path).to eq("/members")
+    end
+
+    it 'displays the gyms index link' do
+      visit "/gyms/#{@gym2.id}/members"
+
+      click_link "gyms index page"
+      expect(current_path).to eq("/gyms")
+    end
   end
 
   describe 'new adoptable member creation' do
@@ -68,8 +70,8 @@ RSpec.describe 'Member Index' do
       fill_in 'zipcode', with: '87634'
       fill_in 'phone', with: '3035574848'
       fill_in 'dues_current', with: 'true'
-      click_on 'Create Member'
 
+      click_on 'Create Member'
       expect(current_path).to eq("/gyms/#{@gym2.id}/members")
       expect(page).to have_content('Jay')
       expect(page).to have_content('Cutler')
@@ -78,35 +80,45 @@ RSpec.describe 'Member Index' do
       expect(page).to have_content('3035574848')
       expect(page).to have_content('true')
     end
+  end
 
     it 'sorts members alphabetically' do
       visit "/gyms/#{@gym2.id}/members"
       click_link 'Sort Members'
       expect(current_path).to eq("/gyms/#{@gym2.id}/members")
-      # save_and_open_page
       expect(@member3.first_name).to appear_before(@member2.first_name)
       expect(@member2.first_name).to appear_before(@member1.first_name)
     end
 
-    describe 'edit Members' do
-      it 'has links to edit each member for each gym' do
-        visit "/gyms/#{@gym2.id}/members"
+  describe 'edit Members' do
+    it 'has links to edit each member for each gym' do
+      visit "/gyms/#{@gym2.id}/members"
+
       expect(page).to have_link("Edit #{@member1.first_name}")
       expect(page).to have_link("Edit #{@member2.first_name}")
       expect(page).to have_link("Edit #{@member3.first_name}")
 
       click_link "Edit #{@member1.first_name}"
       expect(current_path).to eq("/members/#{@member1.id}/edit")
-      end
+    end
 
-      it 'has links to edit each member for each gym' do
-        visit "/gyms/#{@gym3.id}/members"
-        expect(page).to have_link("Edit #{@member8.first_name}")
+    it 'has links to edit each member for each gym' do
+      visit "/gyms/#{@gym3.id}/members"
+      expect(page).to have_link("Edit #{@member8.first_name}")
 
       click_link "Edit #{@member8.first_name}"
       expect(current_path).to eq("/members/#{@member8.id}/edit")
-      end
     end
   end
 
+  describe 'display records over a threshold' do
+    it 'can input a number value and filter member records for display' do
+      visit "/gyms/#{@gym2.id}/members"
+      fill_in "threshold", with: "80202"
+
+      click_button "Sort by Zipcode"
+      expect(page).to have_content("Phil")
+      expect(page).to_not have_content("Alina")
+    end
+  end
 end
