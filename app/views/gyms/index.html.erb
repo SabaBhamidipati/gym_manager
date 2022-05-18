@@ -5,4 +5,5 @@
 <h1>All Gyms</h1>
 <% @gyms.each do |gym| %>
   <h3><%= gym.name %></h3>
+  <h5><%= link_to "Edit #{gym.name}", "/gyms/#{gym.id}/edit" %></h5>
 <% end %>

@@ -53,4 +53,17 @@ describe 'Gym Index' do
        expect(page).to have_content('Mountain Mecca')
      end
    end
+
+   describe 'edit Gyms' do
+      it 'has links to update each gym' do
+       visit '/gyms'
+
+      expect(page).to have_link("Edit #{@gym1.name}")
+      expect(page).to have_link("Edit #{@gym2.name}")
+      expect(page).to have_link("Edit #{@gym3.name}")
+      save_and_open_page
+      click_link "Edit #{@gym1.name}"
+      expect(current_path).to eq("/gyms/#{@gym1.id}/edit")
+      end
+   end
 end
