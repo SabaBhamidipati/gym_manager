@@ -21,7 +21,4 @@ RSpec.describe Member do
       expect(Member.sort_alphabetically).to eq([@member3, @member4, @member5, @member2, @member1])
     end
   end
-
-  # describe 'instance methods' do
-  # end
 end
