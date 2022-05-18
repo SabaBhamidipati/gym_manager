@@ -79,4 +79,15 @@ RSpec.describe 'Member Index' do
     expect(page).to_not have_content(@member8.phone)
     expect(page).to_not have_content(@member8.dues_current)
   end
+
+  describe 'edit Members' do
+    it 'has links to edit each member' do
+      visit '/members'
+    expect(page).to have_link("Edit #{@member1.first_name}")
+    expect(page).to have_link("Edit #{@member3.first_name}")
+  
+    click_link "Edit #{@member1.first_name}"
+    expect(current_path).to eq("/members/#{@member1.id}/edit")
+    end
+  end
 end

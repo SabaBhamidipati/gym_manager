@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 RSpec.describe 'Member Index' do
 
@@ -86,6 +86,26 @@ RSpec.describe 'Member Index' do
       # save_and_open_page
       expect(@member3.first_name).to appear_before(@member2.first_name)
       expect(@member2.first_name).to appear_before(@member1.first_name)
+    end
+
+    describe 'edit Members' do
+      it 'has links to edit each member for each gym' do
+        visit "/gyms/#{@gym2.id}/members"
+      expect(page).to have_link("Edit #{@member1.first_name}")
+      expect(page).to have_link("Edit #{@member2.first_name}")
+      expect(page).to have_link("Edit #{@member3.first_name}")
+
+      click_link "Edit #{@member1.first_name}"
+      expect(current_path).to eq("/members/#{@member1.id}/edit")
+      end
+
+      it 'has links to edit each member for each gym' do
+        visit "/gyms/#{@gym3.id}/members"
+        expect(page).to have_link("Edit #{@member8.first_name}")
+
+      click_link "Edit #{@member8.first_name}"
+      expect(current_path).to eq("/members/#{@member8.id}/edit")
+      end
     end
   end
 
