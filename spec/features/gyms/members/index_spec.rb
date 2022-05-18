@@ -78,6 +78,8 @@ RSpec.describe 'Member Index' do
       expect(page).to have_content('3035574848')
       expect(page).to have_content('true')
     end
+
+    
   end
 
 end

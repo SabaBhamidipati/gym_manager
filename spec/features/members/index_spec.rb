@@ -53,7 +53,7 @@ RSpec.describe 'Member Index' do
 
   it 'displays only true records' do
     visit "/members"
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_content(@member1.first_name)
     expect(page).to have_content(@member1.last_name)
     expect(page).to have_content(@member1.address)
