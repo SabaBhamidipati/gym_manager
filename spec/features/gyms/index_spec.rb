@@ -61,7 +61,7 @@ describe 'Gym Index' do
       expect(page).to have_link("Edit #{@gym1.name}")
       expect(page).to have_link("Edit #{@gym2.name}")
       expect(page).to have_link("Edit #{@gym3.name}")
-      save_and_open_page
+      # save_and_open_page
       click_link "Edit #{@gym1.name}"
       expect(current_path).to eq("/gyms/#{@gym1.id}/edit")
       end
