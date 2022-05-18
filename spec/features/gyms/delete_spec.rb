@@ -12,40 +12,15 @@ describe 'Gym Show' do
     @member5 = Member.create!(first_name: "Ivana", last_name: "Ivusic", address: "81 cambered bar lane", zipcode: 80211, phone: 3032222248, dues_current: false, gym_id: @gym1.id)
   end
 
-  it 'displays the attributes of each gym record' do
-    visit "/gyms/#{@gym1.id}"
-    # save_and_open_page
-    expect(page).to have_content("Armbrust")
-    expect(page).to have_content("zip code: 80204")
-    expect(page).to have_content("member cost: 45")
-    expect(page).to have_content("member initiation fee: 30")
-    expect(page).to have_content("guest cost: 20")
-    expect(page).to have_content("open: true")
-    expect(page).to_not have_content("Armbrust2")
-  end
+  describe 'destroying a gym' do
+    it 'can delete a gym from the index page ' do
+      visit "/gyms/#{@gym2.id}"
+      expect(page).to have_content("Armbrust2")
 
-  it 'shows a count of the number of members associated with a gym' do
-    visit "/gyms/#{@gym1.id}"
-    expect(page).to have_content("member count: 2")
+      click_button "Delete Gym"
 
-    expect(page).to_not have_content("member count: 3")
-  end
-
-  it 'displays the members index link' do
-    visit "/gyms/#{@gym1.id}"
-    click_link "members index page"
-    expect(current_path).to eq("/members")
-  end
-
-  it 'displays the gyms index link' do
-    visit "/gyms/#{@gym1.id}"
-    click_link "gyms index page"
-    expect(current_path).to eq("/gyms")
-  end
-
-  it 'displays the gym members index link' do
-    visit "/gyms/#{@gym2.id}"
-    click_link "gym members index page"
-    expect(current_path).to eq("/gyms/#{@gym2.id}/members")
+      expect(current_path).to eq("/gyms")
+      expect(page).to_not have_content("Armbrust2")
+    end
   end
 end
