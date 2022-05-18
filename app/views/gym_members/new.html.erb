@@ -1,10 +1,10 @@
 <div>
   <%= form_with url: "/gyms/#{@gym.id}/members", method: :post, local: true do |form| %>
-      <%= form.label "New Member" %>
+      <%= form.label "New Member" %><br>
       <%= form.label "First Name" %>
-      <%= form.text_field :first_name %>
+      <%= form.text_field :first_name %><br>
       <%= form.label "Last Name" %>
-      <%= form.text_field :last_name %>
+      <%= form.text_field :last_name %><br>
       <%= form.label "Address" %>
       <%= form.text_field :address %><br>
       <%= form.label "Zip Code" %>

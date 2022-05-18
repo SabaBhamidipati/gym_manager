@@ -12,7 +12,6 @@ describe 'Member Show' do
 
   it 'displays the attributes of each member record' do
     visit "/members/#{@member1.id}"
-    # save_and_open_page
     expect(page).to have_content("first_name: Phil")
     expect(page).to have_content("last_name: Heath")
     expect(page).to have_content("address: 1 barbell lane")
@@ -26,12 +25,14 @@ describe 'Member Show' do
 
   it 'displays the members index link' do
     visit "/members/#{@member1.id}"
+
     click_link "members index page"
     expect(current_path).to eq("/members")
   end
 
   it 'displays the gyms index link' do
     visit "/members/#{@member1.id}"
+
     click_link "gyms index page"
     expect(current_path).to eq("/gyms")
   end

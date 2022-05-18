@@ -1,14 +1,11 @@
 class MembersController < ApplicationController
 
   def index
-    # require "pry"; binding.pry
     @members = Member.dues_current_only
   end
 
   def show
-    # require "pry"; binding.pry
     @member = Member.find(params[:id])
-    #params gets information from the URL found in the test
   end
 
   def edit

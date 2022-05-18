@@ -8,9 +8,8 @@ RSpec.describe 'Edit Member' do
 
   describe 'user can visit a member page and edit information' do
     it 'has a link to update a member' do
-
       visit "/members/#{@member1.id}"
-      # save_and_open_page
+
       click_link "Update Member"
       expect(current_path).to eq("/members/#{@member1.id}/edit")
     end
@@ -19,12 +18,14 @@ RSpec.describe 'Edit Member' do
       visit "/members/#{@member1.id}/edit"
       fill_in :first_name, with: 'Paul'
       fill_in :last_name, with: 'House'
-      click_on 'Update Member'
-      # save_and_open_page
 
+
+      click_on 'Update Member'
       expect(current_path).to eq("/members/#{@member1.id}")
+
       expect(page).to have_content('first_name: Paul')
       expect(page).to have_content('last_name: House')
+
       expect(page).to_not have_content('first_name: Phil')
       expect(page).to_not have_content('last_name: Heath')
     end
