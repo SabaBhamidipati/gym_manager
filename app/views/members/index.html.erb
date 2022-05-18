@@ -13,4 +13,5 @@
   <p>created_at <%= member.created_at %></p>
   <p>updated_at <%= member.updated_at %></p>
   <h5><%= link_to "Edit #{member.first_name}", "/members/#{member.id}/edit" %></h5>
+  <h5><%= link_to "Delete #{member.first_name}", "/members/#{member.id}", method: :delete %></h5>
 <% end %>
