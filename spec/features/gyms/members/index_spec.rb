@@ -78,6 +78,15 @@ RSpec.describe 'Member Index' do
       expect(page).to have_content('3035574848')
       expect(page).to have_content('true')
     end
+
+    it 'sorts members alphabetically' do
+      visit "/gyms/#{@gym2.id}/members"
+      click_link 'Sort Members'
+      expect(current_path).to eq("/gyms/#{@gym2.id}/members")
+      # save_and_open_page
+      expect(@member3.first_name).to appear_before(@member2.first_name)
+      expect(@member2.first_name).to appear_before(@member1.first_name)
+    end
   end
 
 end

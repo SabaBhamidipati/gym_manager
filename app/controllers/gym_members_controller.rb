@@ -3,7 +3,11 @@ class GymMembersController < ApplicationController
   def index
     @gym = Gym.find(params[:gym_id])
     # require "pry"; binding.pry
-    @members = @gym.members
+    if params[:sort].present?
+      @members = @gym.members.sort_alphabetically
+    else
+      @members = @gym.members
+    end
     #first have to grab all artist objects before sending to views
     #put a pry to see what we can get using params
   end

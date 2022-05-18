@@ -16,5 +16,12 @@ RSpec.describe Member do
     it 'finds records that are true' do
       expect(Member.dues_current_only).to eq([@member1, @member3, @member4])
     end
+
+    it 'sorts members alphabetically' do
+      expect(Member.sort_alphabetically).to eq([@member3, @member4, @member5, @member2, @member1])
+    end
   end
+
+  # describe 'instance methods' do
+  # end
 end

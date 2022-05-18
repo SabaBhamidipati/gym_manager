@@ -5,4 +5,9 @@ class Member < ApplicationRecord
     where(dues_current: true)
     # require "pry"; binding.pry
   end
+
+  def self.sort_alphabetically
+     Member.order(:first_name)
+    # require "pry"; binding.pry
+  end
 end
