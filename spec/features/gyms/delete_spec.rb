@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Gym Show' do
+RSpec.describe 'Gym Deletion' do
   before :each do
     @gym1 = Gym.create!(name: "Armbrust", zip_code: 80204, member_cost: 45, member_initiation_fee: 30, guest_cost: 20, open: true)
     @gym2 = Gym.create!(name: "Armbrust2", zip_code: 80201, member_cost: 55, member_initiation_fee: 30, guest_cost: 20, open: true)
@@ -12,40 +12,26 @@ describe 'Gym Show' do
     @member5 = Member.create!(first_name: "Ivana", last_name: "Ivusic", address: "81 cambered bar lane", zipcode: 80211, phone: 3032222248, dues_current: false, gym_id: @gym1.id)
   end
 
-  it 'displays the attributes of each gym record' do
-    visit "/gyms/#{@gym1.id}"
-    # save_and_open_page
-    expect(page).to have_content("Armbrust")
-    expect(page).to have_content("zip code: 80204")
-    expect(page).to have_content("member cost: 45")
-    expect(page).to have_content("member initiation fee: 30")
-    expect(page).to have_content("guest cost: 20")
-    expect(page).to have_content("open: true")
-    expect(page).to_not have_content("Armbrust2")
-  end
+  describe 'destroying a gym' do
 
-  it 'shows a count of the number of members associated with a gym' do
-    visit "/gyms/#{@gym1.id}"
-    expect(page).to have_content("member count: 2")
+    it 'can delete a gym from the index page ' do
+      visit "/gyms/#{@gym2.id}"
+      expect(page).to have_content("Armbrust2")
 
-    expect(page).to_not have_content("member count: 3")
-  end
+      click_button "Delete Gym"
 
-  it 'displays the members index link' do
-    visit "/gyms/#{@gym1.id}"
-    click_link "members index page"
-    expect(current_path).to eq("/members")
-  end
+      expect(current_path).to eq("/gyms")
+      expect(page).to_not have_content("Armbrust2")
+    end
 
-  it 'displays the gyms index link' do
-    visit "/gyms/#{@gym1.id}"
-    click_link "gyms index page"
-    expect(current_path).to eq("/gyms")
-  end
+    it 'adds a button to delete each parent' do
+       visit "/gyms"
 
-  it 'displays the gym members index link' do
-    visit "/gyms/#{@gym2.id}"
-    click_link "gym members index page"
-    expect(current_path).to eq("/gyms/#{@gym2.id}/members")
+       expect(page).to have_link("Delete #{@gym1.name}")
+       expect(page).to have_link("Delete #{@gym2.name}")
+
+       click_link "Delete #{@gym1.name}"
+       expect(current_path).to eq("/gyms")
+     end
   end
 end
