@@ -21,5 +21,16 @@ RSpec.describe 'Member Deletion' do
       expect(current_path).to eq("/members")
       expect(page).to_not have_content("Phil")
     end
+
+    it 'adds a button to delete each member' do
+       visit "/members"
+
+       expect(page).to have_link("Delete #{@member1.first_name}")
+       expect(page).to have_link("Delete #{@member3.first_name}")
+       # save_and_open_page
+
+       click_link "Delete #{@member1.first_name}"
+       expect(current_path).to eq("/members")
+     end
   end
 end

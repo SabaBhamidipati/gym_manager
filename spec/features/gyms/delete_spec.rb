@@ -26,7 +26,6 @@ RSpec.describe 'Gym Deletion' do
 
     it 'adds a button to delete each parent' do
        visit "/gyms"
-
        expect(page).to have_link("Delete #{@gym1.name}")
        expect(page).to have_link("Delete #{@gym2.name}")
 
