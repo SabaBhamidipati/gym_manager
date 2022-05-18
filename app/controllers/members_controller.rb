@@ -21,6 +21,11 @@ class MembersController < ApplicationController
     redirect_to "/members/#{member.id}"
   end
 
+  def destroy
+    Member.destroy(params[:id])
+    redirect_to "/members"
+  end
+
   private
     def member_params
       params.permit(:first_name, :last_name, :address, :zipcode, :phone, :dues_current)
